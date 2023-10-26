@@ -89,129 +89,132 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if(Time.timeScale == 1)
         {
-            setFormRed();
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            setFormGreen();
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            setFormBlue();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            switch (currentForm)
+            if (Input.GetKeyDown(KeyCode.J))
             {
-                case 0: break;
-                case 1: powerNuke(); break;
-                case 2: powerMultiply(); break;
-                case 3: powerShield(); break;
-                default: error.Play(); break;
+                setFormRed();
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            if (t.position.x > -5)
+            if (Input.GetKeyDown(KeyCode.K))
             {
-                t.Translate(new Vector3(-5, 0, 0));
+                setFormGreen();
             }
-            else
-            {
-                error.Play();
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            if (t.position.x < 5)
+            if (Input.GetKeyDown(KeyCode.L))
             {
-                t.Translate(new Vector3(5, 0, 0));
+                setFormBlue();
             }
-            else
-            {
-                error.Play();
-            }
-        }
 
-        if (Input.touches.Length > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                firstPressPos = new Vector2(touch.position.x, touch.position.y);
-            }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                secondPressPos = new Vector2(touch.position.x, touch.position.y);
-                currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-                currentSwipe.Normalize();
-                if (currentSwipe.x < 0)
+                switch (currentForm)
                 {
-                    if (t.position.x > -5)
-                    {
-                        t.Translate(new Vector3(-5, 0, 0));
-                    }
-                    else
-                    {
-                        error.Play();
-                    }
-                }
-                if (currentSwipe.x > 0)
-                {
-                    if (t.position.x < 5)
-                    {
-                        t.Translate(new Vector3(5, 0, 0));
-                    }
-                    else
-                    {
-                        error.Play();
-                    }
+                    case 0: break;
+                    case 1: powerNuke(); break;
+                    case 2: powerMultiply(); break;
+                    case 3: powerShield(); break;
+                    default: error.Play(); break;
                 }
             }
-        }
 
-        //Cheats
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            cheater = true;
-            if (red < 5)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                red++;
-                redText.SetText("Red: " + red);
+                if (t.position.x > -5)
+                {
+                    t.Translate(new Vector3(-5, 0, 0));
+                }
+                else
+                {
+                    error.Play();
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            cheater = true;
-            if (green < 5)
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                green++;
-                greenText.SetText("Green: " + green);
+                if (t.position.x < 5)
+                {
+                    t.Translate(new Vector3(5, 0, 0));
+                }
+                else
+                {
+                    error.Play();
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            cheater = true;
-            if(blue < 5) 
+            if (Input.touches.Length > 0)
             {
-                blue++;
-                blueText.SetText("Blue: " + blue);
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    firstPressPos = new Vector2(touch.position.x, touch.position.y);
+                }
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    secondPressPos = new Vector2(touch.position.x, touch.position.y);
+                    currentSwipe = new Vector3(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
+                    currentSwipe.Normalize();
+                    if (currentSwipe.x < 0)
+                    {
+                        if (t.position.x > -5)
+                        {
+                            t.Translate(new Vector3(-5, 0, 0));
+                        }
+                        else
+                        {
+                            error.Play();
+                        }
+                    }
+                    if (currentSwipe.x > 0)
+                    {
+                        if (t.position.x < 5)
+                        {
+                            t.Translate(new Vector3(5, 0, 0));
+                        }
+                        else
+                        {
+                            error.Play();
+                        }
+                    }
+                }
             }
-        }
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            cheater = true;
-            invincible = true;
+            //Cheats
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                cheater = true;
+                if (red < 5)
+                {
+                    red++;
+                    redText.SetText("Red: " + red);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                cheater = true;
+                if (green < 5)
+                {
+                    green++;
+                    greenText.SetText("Green: " + green);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                cheater = true;
+                if (blue < 5)
+                {
+                    blue++;
+                    blueText.SetText("Blue: " + blue);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                cheater = true;
+                invincible = true;
+            }
         }
     }
 

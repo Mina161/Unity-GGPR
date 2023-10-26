@@ -21,21 +21,59 @@ public class RoadScript : MonoBehaviour
         System.Random random = new System.Random();
         int numObstacles = random.Next(0, 3);
         int currObstacles = 0;
+        int currEmpty = 0;
+        int randomNumber = 0;
         int renderWhat = random.Next(0, 3);
         switch(renderWhat)
         {
-            case 0: break;
+            case 0:
+                {
+                    if(currEmpty < 2)
+                    {
+                        currEmpty++;
+                        break;
+                    }
+                    else
+                    {
+                        if (currObstacles < numObstacles)
+                        {
+                            currObstacles++;
+                            randomNumber = random.Next(0, obstaclesLeft.Length);
+                            obstaclesLeft[randomNumber].SetActive(true);
+                            break;
+                        }
+                        else
+                        {
+                            randomNumber = random.Next(0, powerupsLeft.Length);
+                            powerupsLeft[randomNumber].SetActive(true);
+                            break;
+                        }
+                    }
+                }
             case 1:
                 {
-                    if (currObstacles == numObstacles) break;
+                    if (currObstacles == numObstacles)
+                    {
+                        if(currEmpty < 2)
+                        {
+                            currEmpty++;
+                            break;
+                        }
+                        else
+                        {
+                            randomNumber = random.Next(0, powerupsLeft.Length);
+                            powerupsLeft[randomNumber].SetActive(true);
+                            break;
+                        }
+                    }
                     currObstacles++;
-                    int randomNumber = random.Next(0, obstaclesLeft.Length);
+                    randomNumber = random.Next(0, obstaclesLeft.Length);
                     obstaclesLeft[randomNumber].SetActive(true);
                     break;
                 }
             case 2:
                 {
-                    int randomNumber = random.Next(0, powerupsLeft.Length);
+                    randomNumber = random.Next(0, powerupsLeft.Length);
                     powerupsLeft[randomNumber].SetActive(true);
                     break;
                 }
@@ -44,18 +82,54 @@ public class RoadScript : MonoBehaviour
         renderWhat = random.Next(0, 3);
         switch (renderWhat)
         {
-            case 0: break;
+            case 0:
+                {
+                    if (currEmpty < 2)
+                    {
+                        currEmpty++;
+                        break;
+                    }
+                    else
+                    {
+                        if (currObstacles < numObstacles)
+                        {
+                            currObstacles++;
+                            randomNumber = random.Next(0, obstacles.Length);
+                            obstacles[randomNumber].SetActive(true);
+                            break;
+                        }
+                        else
+                        {
+                            randomNumber = random.Next(0, powerups.Length);
+                            powerups[randomNumber].SetActive(true);
+                            break;
+                        }
+                    }
+                }
             case 1:
                 {
-                    if (currObstacles == numObstacles) break;
+                    if (currObstacles == numObstacles)
+                    {
+                        if (currEmpty < 2)
+                        {
+                            currEmpty++;
+                            break;
+                        }
+                        else
+                        {
+                            randomNumber = random.Next(0, powerups.Length);
+                            powerups[randomNumber].SetActive(true);
+                            break;
+                        }
+                    }
                     currObstacles++;
-                    int randomNumber = random.Next(0, obstacles.Length);
+                    randomNumber = random.Next(0, obstacles.Length);
                     obstacles[randomNumber].SetActive(true);
                     break;
                 }
             case 2:
                 {
-                    int randomNumber = random.Next(0, powerups.Length);
+                    randomNumber = random.Next(0, powerups.Length);
                     powerups[randomNumber].SetActive(true);
                     break;
                 }
@@ -64,18 +138,54 @@ public class RoadScript : MonoBehaviour
         renderWhat = random.Next(0, 3);
         switch (renderWhat)
         {
-            case 0: break;
+            case 0:
+                {
+                    if (currEmpty < 2)
+                    {
+                        currEmpty++;
+                        break;
+                    }
+                    else
+                    {
+                        if (currObstacles < numObstacles)
+                        {
+                            currObstacles++;
+                            randomNumber = random.Next(0, obstaclesRight.Length);
+                            obstaclesRight[randomNumber].SetActive(true);
+                            break;
+                        }
+                        else
+                        {
+                            randomNumber = random.Next(0, powerupsRight.Length);
+                            powerupsRight[randomNumber].SetActive(true);
+                            break;
+                        }
+                    }
+                }
             case 1:
                 {
-                    if (currObstacles == numObstacles) break;
+                    if (currObstacles == numObstacles)
+                    {
+                        if (currEmpty < 2)
+                        {
+                            currEmpty++;
+                            break;
+                        }
+                        else
+                        {
+                            randomNumber = random.Next(0, powerupsRight.Length);
+                            powerupsRight[randomNumber].SetActive(true);
+                            break;
+                        }
+                    }
                     currObstacles++;
-                    int randomNumber = random.Next(0, obstaclesRight.Length);
+                    randomNumber = random.Next(0, obstaclesRight.Length);
                     obstaclesRight[randomNumber].SetActive(true);
                     break;
                 }
             case 2:
                 {
-                    int randomNumber = random.Next(0, powerupsRight.Length);
+                    randomNumber = random.Next(0, powerupsRight.Length);
                     powerupsRight[randomNumber].SetActive(true);
                     break;
                 }
